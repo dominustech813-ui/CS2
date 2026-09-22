@@ -6,6 +6,24 @@
     .replace(/Bot CS/g,'Bot CDL')
     .replace(/Membro CS/g,'Membro CDL')
     .replace(/\bCS\b/g,'CDL');
+
+  function ticketUi(){
+    const methodAlt=document.getElementById('methodAlt');
+    if(methodAlt){
+      methodAlt.classList.remove('hidden');
+      methodAlt.textContent='🎟️ Entrar por Ticket';
+      methodAlt.title='Pedir entrada ao administrador usando um ticket';
+    }
+    const unauthorized=document.querySelector('#unauthorizedBox button');
+    if(unauthorized)unauthorized.textContent='🎟️ Pedir entrada por Ticket';
+    const altTitle=document.querySelector('#alternateStep h3');
+    if(altTitle)altTitle.textContent='🎟️ Entrada por Ticket';
+    const altHelp=document.querySelector('#alternateStep .altHelp');
+    if(altHelp)altHelp.textContent='Toque no botão abaixo para gerar um ticket. O ADM receberá a solicitação e poderá autorizar ou recusar sua entrada.';
+    const guestButton=document.getElementById('guestRequestBtn');
+    if(guestButton)guestButton.textContent='🎟️ Gerar Ticket e Pedir ao ADM';
+  }
+
   function apply(root=document){
     document.title=BRAND;
     const icon=document.querySelector('link[rel~="icon"]');if(icon)icon.href=LOGO;
@@ -15,7 +33,10 @@
     nodes.forEach(t=>{const p=t.parentElement;if(!p||['SCRIPT','STYLE','NOSCRIPT'].includes(p.tagName))return;const v=repl(t.nodeValue);if(v!==t.nodeValue)t.nodeValue=v;});
     root.querySelectorAll?.('[alt]').forEach(el=>el.alt=repl(el.alt));
     root.querySelectorAll?.('img').forEach(img=>{if((img.getAttribute('src')||'').includes('logo'))img.src=LOGO;});
+    ticketUi();
   }
   apply();
-  new MutationObserver(m=>m.forEach(x=>x.addedNodes.forEach(n=>{if(n.nodeType===1)apply(n);else if(n.nodeType===3){const v=repl(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v;}}))).observe(document.documentElement,{childList:true,subtree:true});
+  new MutationObserver(m=>{m.forEach(x=>x.addedNodes.forEach(n=>{if(n.nodeType===1)apply(n);else if(n.nodeType===3){const v=repl(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v;}}));ticketUi();}).observe(document.documentElement,{childList:true,subtree:true});
+  setTimeout(ticketUi,300);
+  setTimeout(ticketUi,1200);
 })();
