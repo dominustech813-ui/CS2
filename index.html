@@ -2,91 +2,93 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020a05">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="theme-color" content="#07120a">
 <title>Creative Dark Legends 2 COPA CDL</title>
-<link rel="icon" href="creative-squad/logo-cdl.svg">
-<link rel="stylesheet" href="creative-squad/styles.css?v=28">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-.login .brand.big img{object-fit:cover}.loginMethods{display:grid!important;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 14px}.methodTab{display:block!important;border:1px solid #31523b;background:#09160e;color:#c7d5ca;border-radius:10px;padding:12px 10px;font-weight:900}.methodTab.active{background:#7cff35;color:#062000;border-color:#7cff35}.accessBox{margin-top:12px;padding:14px;border:1px solid #675d17;background:#211d08;border-radius:10px}.ticketBox{margin-top:10px;padding:14px;border:1px solid #31583d;background:#07140b;border-radius:10px;text-align:center}.ticketNumber{font-size:30px;font-weight:1000;letter-spacing:.08em;color:#ffe42f}.statusOk{color:#7cff35!important}.statusErr{color:#ffe42f!important}.full{width:100%}.altHelp{color:#a9b6ac;line-height:1.45}.guestButton{font-size:15px;padding:14px}.waitingActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}@media(max-width:520px){.loginMethods,.waitingActions{grid-template-columns:1fr}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#020a05;color:#f4fff6;font-family:Arial,Helvetica,sans-serif}body{min-height:100vh;padding:28px 16px 48px}.wrap{width:min(760px,100%);margin:0 auto}.card{background:#0d2416;border:1px solid #31583d;border-radius:24px;padding:24px;box-shadow:0 18px 60px #0008}.brand{display:flex;align-items:center;gap:20px;margin-bottom:24px}.brand img{width:132px;height:132px;object-fit:contain;flex:none}.tag{display:inline-block;background:#73ff2d;color:#08220a;padding:8px 18px;border-radius:999px;font-size:14px;font-weight:900}.brand h1{font-size:42px;line-height:1.05;margin:12px 0 0}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.tab{border:1px solid #31583d;background:#06140b;color:#d7e6da;border-radius:14px;padding:14px;font-weight:900;font-size:16px}.tab.active{background:#73ff2d;color:#062000;border-color:#73ff2d}.pane.hidden,.hidden{display:none!important}p{font-size:18px;line-height:1.45;color:#e8f2ea}input{width:100%;border:2px solid #31583d;background:#021007;color:white;border-radius:14px;padding:15px;font-size:18px;outline:none}input:focus{border-color:#73ff2d}.btn{border:0;border-radius:14px;padding:14px 18px;font-size:17px;font-weight:900;cursor:pointer}.green{background:#73ff2d;color:#062000}.yellow{background:#ffe447;color:#211c00}.dark{background:#18261d;color:#fff;border:1px solid #3c5544}.full{width:100%}.row{display:flex;gap:10px;flex-wrap:wrap}.msg{min-height:26px;margin-top:12px;font-weight:800;color:#ffe447}.msg.ok{color:#73ff2d}.ticketBox{background:#06140b;border:1px solid #31583d;border-radius:16px;padding:20px;text-align:center;margin:14px 0}.ticketNo{font-size:38px;letter-spacing:4px;font-weight:1000;color:#ffe447}.small{font-size:13px;color:#b8c9bb}.status{margin-top:8px;font-size:14px;color:#dce9de}.note{background:#171d09;border:1px solid #6b6119;border-radius:14px;padding:14px;margin-top:14px;color:#f1ecc5}.verify{text-align:center;padding:35px 10px}.verify .icon{font-size:60px}.verify h2{font-size:30px}.loader{display:inline-block;width:18px;height:18px;border:3px solid #ffffff55;border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-4px;margin-right:8px}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){body{padding:18px 12px 36px}.card{padding:18px;border-radius:20px}.brand{align-items:flex-start;gap:14px}.brand img{width:105px;height:105px}.brand h1{font-size:34px}.tabs{grid-template-columns:1fr}.tab{font-size:15px}p{font-size:17px}.row .btn{flex:1}.ticketNo{font-size:32px}}
 </style>
 </head>
 <body>
-<section id="login" class="login card">
-  <div class="brand big"><img src="creative-squad/logo-cdl.svg" alt="Creative Dark Legends 2 COPA CDL"><div><span class="tag">MINECRAFT</span><h1>Creative Dark Legends 2 COPA CDL</h1></div></div>
-  <div class="loginMethods">
-    <button id="methodCode" class="methodTab active" type="button" onclick="showMethod('code')">📧 Receber código</button>
-    <button id="methodAlt" class="methodTab" type="button" onclick="showMethod('alt')">🎟️ Entrar por Ticket</button>
+<main class="wrap">
+<section id="login" class="card">
+  <div class="brand">
+    <img src="creative-squad/logo-cdl.svg" alt="CDL" onerror="this.style.display='none'">
+    <div><span class="tag">MINECRAFT</span><h1>Creative Dark<br>Legends 2<br>COPA CDL</h1></div>
   </div>
-  <div id="emailStep">
+
+  <div class="tabs">
+    <button id="tabEmail" class="tab active" type="button" onclick="showPane('email')">📧 Receber código</button>
+    <button id="tabTicket" class="tab" type="button" onclick="showPane('ticket')">🎟️ Entrar por Ticket</button>
+  </div>
+
+  <div id="emailPane" class="pane">
     <p>Digite seu e-mail para receber o código de acesso.</p>
-    <input id="email" type="email" placeholder="voce@email.com" autocomplete="email">
-    <button id="sendBtn" class="btn green" onclick="sendCode()">Enviar código</button>
-    <div id="unauthorizedBox" class="accessBox hidden">
-      <b>🔒 Você não tem autorização do site.</b>
-      <p>Use a opção de ticket para pedir autorização ao ADM.</p>
-      <button class="btn yellow full" onclick="showMethod('alt')">🎟️ Pedir entrada por Ticket</button>
-    </div>
+    <input id="email" type="email" autocomplete="email" placeholder="voce@email.com">
+    <button id="sendBtn" class="btn green" style="margin-top:14px" onclick="sendCode()">Enviar código</button>
+    <div id="emailHelp" class="note hidden">Este e-mail ainda não está autorizado. Use a aba <b>Entrar por Ticket</b> para pedir liberação ao ADM.</div>
   </div>
-  <div id="alternateStep" class="hidden">
-    <div class="accessBox">
-      <h3>🎟️ Entrada por Ticket</h3>
-      <p class="altHelp">Toque no botão abaixo para gerar um ticket. O ADM receberá a solicitação e poderá autorizar ou recusar sua entrada.</p>
-      <button id="guestRequestBtn" class="btn yellow full guestButton" onclick="requestGuestAccess()">🎟️ Gerar Ticket e Pedir ao ADM</button>
-    </div>
-  </div>
-  <div id="waitingStep" class="hidden">
-    <p>Solicitação enviada para o administrador.</p>
-    <div class="ticketBox"><div class="small">SEU TICKET É</div><div id="waitingTicket" class="ticketNumber">0000000</div><div id="waitingStatus" class="small">⏳ Aguardando ADM.</div></div>
-    <div class="waitingActions"><button class="btn dark" onclick="checkGuestStatus(true)">Atualizar</button><button id="notifyAgainBtn" class="btn yellow" onclick="notifyAdminAgain()">📧 Avisar ADM novamente</button></div>
-  </div>
-  <div id="codeStep" class="hidden">
+
+  <div id="codePane" class="pane hidden">
     <p>Código enviado para <b id="codeEmail"></b></p>
-    <input id="code" class="otp" inputmode="numeric" maxlength="8" placeholder="00000000">
-    <div class="row"><button id="verifyBtn" class="btn green" onclick="verifyCode()">Verificar</button><button class="btn dark" onclick="sendCode(true)">Reenviar</button><button class="btn dark" onclick="showMethod('code')">Trocar e-mail</button></div>
+    <input id="code" inputmode="numeric" maxlength="8" autocomplete="one-time-code" placeholder="00000000">
+    <div class="row" style="margin-top:12px">
+      <button id="verifyBtn" class="btn green" onclick="verifyCode()">Verificar</button>
+      <button class="btn dark" onclick="sendCode(true)">Reenviar</button>
+      <button class="btn dark" onclick="showPane('email')">Trocar e-mail</button>
+    </div>
   </div>
-  <div id="loginMsg" class="msg"></div>
+
+  <div id="ticketPane" class="pane hidden">
+    <p>Gere um ticket para pedir autorização ao administrador.</p>
+    <button id="ticketBtn" class="btn yellow full" onclick="requestGuestAccess()">🎟️ Gerar Ticket e Pedir ao ADM</button>
+  </div>
+
+  <div id="waitingPane" class="pane hidden">
+    <p>Solicitação enviada ao administrador.</p>
+    <div class="ticketBox">
+      <div class="small">SEU TICKET É</div>
+      <div id="ticketNumber" class="ticketNo">0000000</div>
+      <div id="ticketStatus" class="status">⏳ Aguardando ADM.</div>
+    </div>
+    <div class="row">
+      <button class="btn dark" onclick="checkGuestStatus(true)">Atualizar</button>
+      <button id="notifyBtn" class="btn yellow" onclick="notifyAdminAgain()">📧 Avisar ADM novamente</button>
+    </div>
+  </div>
+
+  <div id="msg" class="msg"></div>
 </section>
-<section id="verify" class="verify hidden"><div id="verifyContent"></div></section>
+
+<section id="verifyScreen" class="card verify hidden"><div id="verifyContent"></div></section>
+</main>
 <script>
-const SUPABASE_URL='https://yivgtvgyaalhlcxatbfc.supabase.co';
-const SUPABASE_KEY='sb_publishable_JSNYdrq-FFHQtZ0DO3sfVw_v93KOBjs';
-const ADMIN='theoccosta2020@gmail.com';
+const BASE='https://yivgtvgyaalhlcxatbfc.supabase.co';
+const KEY='sb_publishable_JSNYdrq-FFHQtZ0DO3sfVw_v93KOBjs';
+const STORE='sb-yivgtvgyaalhlcxatbfc-auth-token';
 const GUEST_STORE='cs_guest_ticket_v1';
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true}});
-let pendingEmail='',poll=null,guest=null;
-const $=id=>document.getElementById(id),sleep=ms=>new Promise(r=>setTimeout(r,ms));
-function msg(t,ok=false){$('loginMsg').textContent=t||'';$('loginMsg').className='msg '+(ok?'statusOk':'statusErr')}
+let pendingEmail='',guest=null,poll=null;
+const $=id=>document.getElementById(id);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function setMsg(t,ok=false){$('msg').textContent=t||'';$('msg').className='msg'+(ok?' ok':'')}
 function stopPoll(){if(poll){clearInterval(poll);poll=null}}
-function showMethod(method){stopPoll();$('methodCode').classList.toggle('active',method==='code');$('methodAlt').classList.toggle('active',method==='alt');$('emailStep').classList.toggle('hidden',method!=='code');$('alternateStep').classList.toggle('hidden',method!=='alt');$('waitingStep').classList.add('hidden');$('codeStep').classList.add('hidden');msg('');if(method==='alt'&&guest){showWaiting();checkGuestStatus(false)}}
-async function api(payload){const r=await fetch(SUPABASE_URL+'/functions/v1/send-cs-otp',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify(payload)});const j=await r.json().catch(()=>({}));return {ok:r.ok,data:j};}
-async function sendCode(resend=false){
-  const email=(resend?pendingEmail:$('email').value.trim()).toLowerCase();if(!email||!email.includes('@'))return msg('Digite um e-mail válido.');pendingEmail=email;$('unauthorizedBox').classList.add('hidden');$('sendBtn').disabled=true;msg('Verificando autorização...');
-  try{
-    const authCheck=await api({action:'request_access',email});
-    if(!authCheck.ok)return msg(authCheck.data?.error||'Não foi possível verificar a autorização.');
-    if(authCheck.data?.authorized!==true&&authCheck.data?.status!=='approved'){
-      $('unauthorizedBox').classList.remove('hidden');
-      if(authCheck.data?.ticket)msg('Seu pedido foi criado. Ticket '+authCheck.data.ticket+'. Use a aba Ticket para acompanhar.');
-      else msg('Você ainda não está autorizado. Use a opção de Ticket.');
-      return;
-    }
-    msg('Enviando código...');
-    const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true}});
-    if(error)return msg('Não foi possível enviar o código: '+error.message);
-    $('emailStep').classList.add('hidden');$('alternateStep').classList.add('hidden');$('waitingStep').classList.add('hidden');$('codeStep').classList.remove('hidden');$('codeEmail').textContent=email;$('code').value='';msg('✅ Código enviado. Confira a caixa de entrada e o spam.',true);
-  }catch(e){msg('Não foi possível enviar o código agora. Tente novamente.')}finally{$('sendBtn').disabled=false}
-}
-async function requestGuestAccess(){if(guest){showWaiting();return checkGuestStatus(true)}if(!confirm('Deseja gerar um ticket para pedir entrada ao ADM?'))return;$('guestRequestBtn').disabled=true;msg('Gerando ticket...');try{const r=await api({action:'guest_request'});if(!r.ok)return msg(r.data?.error||'Não foi possível gerar o ticket.');guest={ticket:Number(r.data.ticket),request_key:String(r.data.request_key)};localStorage.setItem(GUEST_STORE,JSON.stringify(guest));showWaiting();$('waitingStatus').textContent=r.data?.email_alert_sent?'📧 ADM avisado por e-mail. Aguardando autorização...':'🔔 Solicitação criada. Aguardando ADM.';msg('')}catch(e){msg('Não foi possível gerar o ticket agora.')}finally{$('guestRequestBtn').disabled=false}}
-function showWaiting(){if(!guest)return;$('methodCode').classList.remove('active');$('methodAlt').classList.add('active');$('emailStep').classList.add('hidden');$('alternateStep').classList.add('hidden');$('codeStep').classList.add('hidden');$('waitingStep').classList.remove('hidden');$('waitingTicket').textContent=String(guest.ticket);$('waitingStatus').textContent='⏳ Aguardando ADM.';stopPoll();poll=setInterval(()=>checkGuestStatus(false),4000)}
-async function notifyAdminAgain(){if(!guest)return;const btn=$('notifyAgainBtn');btn.disabled=true;$('waitingStatus').textContent='📧 Enviando novo aviso para o ADM...';try{const r=await api({action:'guest_notify_admin',ticket:guest.ticket,request_key:guest.request_key});$('waitingStatus').textContent=r.ok?(r.data?.email_alert_sent?'✅ Novo aviso enviado ao ADM.':'🔔 Aviso enviado no site.'):(r.data?.error||'Não foi possível avisar o ADM.')}catch(e){$('waitingStatus').textContent='Não foi possível avisar o ADM agora.'}finally{setTimeout(()=>btn.disabled=false,3000)}}
-async function checkGuestStatus(manual=false){if(!guest)return;if(manual)$('waitingStatus').textContent='Atualizando status...';try{const r=await api({action:'guest_status',ticket:guest.ticket,request_key:guest.request_key});if(!r.ok){if(manual)$('waitingStatus').textContent=r.data?.error||'Não foi possível atualizar.';return}if(r.data.status==='approved'){stopPoll();$('waitingStatus').innerHTML='✅ <b>ADM autorizou sua entrada!</b> Entrando...';const {data,error}=await sb.auth.signInWithPassword({email:r.data.guest_email,password:r.data.guest_password});if(error||!data.user){$('waitingStatus').textContent='A entrada foi autorizada, mas não foi possível abrir o site. Toque em Atualizar.';return}const {data:allowed}=await sb.rpc('is_cs_authorized');if(!allowed){await sb.auth.signOut();$('waitingStatus').textContent='Aguardando liberação final do ADM...';return}localStorage.removeItem(GUEST_STORE);guest=null;$('login').classList.add('hidden');$('verify').classList.remove('hidden');$('verifyContent').innerHTML='<div class="icon">✅</div><h2>AUTORIZADO</h2>';await sleep(700);location.replace('creative-squad-v8/?guest='+Date.now()+'&v=28')}else if(r.data.status==='denied'){stopPoll();$('waitingStatus').innerHTML='❌ <b>O ADM não autorizou esta entrada.</b>';localStorage.removeItem(GUEST_STORE);guest=null}else if(manual)$('waitingStatus').textContent='⏳ Aguardando ADM.'}catch(e){if(manual)$('waitingStatus').textContent='Falha ao atualizar status.'}}
-async function verifyCode(){const token=$('code').value.trim();if(token.length<6)return msg('Digite o código recebido no e-mail.');$('verifyBtn').disabled=true;msg('Verificando código...');const {data,error}=await sb.auth.verifyOtp({email:pendingEmail,token,type:'email'});$('verifyBtn').disabled=false;if(error||!data.user)return msg('Código inválido ou expirado.');const {data:allowed}=await sb.rpc('is_cs_authorized');if(!allowed){await sb.auth.signOut();showMethod('alt');return msg('Você ainda não está autorizado pelo ADM.');}let name=pendingEmail===ADMIN?'Theo':pendingEmail.split('@')[0];$('login').classList.add('hidden');$('verify').classList.remove('hidden');$('verifyContent').innerHTML='<div class="icon">✅</div><h2>VERIFICADO</h2>';await sleep(700);$('verifyContent').innerHTML='<div class="icon">🎮</div><h2>Bem-vindo,<br>'+name.toUpperCase()+'!!</h2>';await sleep(900);location.replace('creative-squad-v8/?login='+Date.now()+'&v=28')}
-(async()=>{try{guest=JSON.parse(localStorage.getItem(GUEST_STORE)||'null')}catch{guest=null}const {data}=await sb.auth.getSession();if(data.session?.user){const {data:allowed}=await sb.rpc('is_cs_authorized');if(allowed)return location.replace('creative-squad-v8/?session='+Date.now()+'&v=28');await sb.auth.signOut()}if(guest){showWaiting();checkGuestStatus(false)}})();
+function showPane(name){stopPoll();['emailPane','codePane','ticketPane','waitingPane'].forEach(id=>$(id).classList.add('hidden'));$('tabEmail').classList.toggle('active',name==='email'||name==='code');$('tabTicket').classList.toggle('active',name==='ticket'||name==='waiting');if(name==='email')$('emailPane').classList.remove('hidden');if(name==='code')$('codePane').classList.remove('hidden');if(name==='ticket'){$('ticketPane').classList.remove('hidden');if(guest)showWaiting()}if(name==='waiting')$('waitingPane').classList.remove('hidden');setMsg('')}
+async function edge(payload,token=''){const headers={'Content-Type':'application/json','apikey':KEY};if(token)headers.Authorization='Bearer '+token;const r=await fetch(BASE+'/functions/v1/send-cs-otp',{method:'POST',headers,body:JSON.stringify(payload)});const data=await r.json().catch(()=>({}));return {ok:r.ok,data,status:r.status}}
+async function authPost(path,payload){const r=await fetch(BASE+'/auth/v1/'+path,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify(payload)});const data=await r.json().catch(()=>({}));return {ok:r.ok,data,status:r.status}}
+function saveSession(s){if(!s||!s.access_token)return false;const out={...s,expires_at:s.expires_at||Math.floor(Date.now()/1000)+Number(s.expires_in||3600)};localStorage.setItem(STORE,JSON.stringify(out));return true}
+async function authorized(token){try{const r=await fetch(BASE+'/rest/v1/rpc/is_cs_authorized',{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY,'Authorization':'Bearer '+token},body:'{}'});if(!r.ok)return false;const v=await r.json();return v===true}catch{return false}}
+function goApp(){location.href='creative-squad-v8/?v=29&t='+Date.now()}
+async function sendCode(resend=false){const email=(resend?pendingEmail:$('email').value.trim()).toLowerCase();if(!email||!email.includes('@'))return setMsg('Digite um e-mail válido.');pendingEmail=email;$('emailHelp').classList.add('hidden');$('sendBtn').disabled=true;setMsg('Verificando autorização...');try{const chk=await edge({action:'request_access',email});if(!chk.ok)return setMsg(chk.data?.error||'Não foi possível verificar o acesso.');if(chk.data?.authorized!==true&&chk.data?.status!=='approved'){$('emailHelp').classList.remove('hidden');if(chk.data?.ticket)setMsg('Pedido criado. Ticket '+chk.data.ticket+'.');else setMsg('Este e-mail ainda não está autorizado.');return}setMsg('Enviando código...');const r=await authPost('otp',{email,create_user:true});if(!r.ok)return setMsg(r.data?.msg||r.data?.error_description||r.data?.message||'Não foi possível enviar o código.');$('codeEmail').textContent=email;$('code').value='';showPane('code');setMsg('✅ Código enviado. Confira a caixa de entrada e o spam.',true)}catch(e){setMsg('Falha de conexão. Tente novamente.')}finally{$('sendBtn').disabled=false}}
+async function verifyCode(){const token=$('code').value.trim();if(token.length<6)return setMsg('Digite o código recebido.');$('verifyBtn').disabled=true;setMsg('Verificando código...');try{const r=await authPost('verify',{email:pendingEmail,token,type:'email'});if(!r.ok||!r.data?.access_token)return setMsg(r.data?.msg||r.data?.error_description||'Código inválido ou expirado.');if(!(await authorized(r.data.access_token)))return setMsg('Este e-mail ainda não está autorizado pelo ADM.');saveSession(r.data);$('login').classList.add('hidden');$('verifyScreen').classList.remove('hidden');$('verifyContent').innerHTML='<div class="icon">✅</div><h2>VERIFICADO</h2><p>Entrando...</p>';await sleep(650);goApp()}catch(e){setMsg('Não foi possível verificar agora.')}finally{$('verifyBtn').disabled=false}}
+async function requestGuestAccess(){if(guest)return showWaiting();$('ticketBtn').disabled=true;setMsg('Gerando ticket...');try{const r=await edge({action:'guest_request'});if(!r.ok)return setMsg(r.data?.error||'Não foi possível gerar o ticket.');guest={ticket:Number(r.data.ticket),request_key:String(r.data.request_key)};localStorage.setItem(GUEST_STORE,JSON.stringify(guest));showWaiting();$('ticketStatus').textContent=r.data?.email_alert_sent?'📧 ADM avisado por e-mail. Aguardando autorização...':'🔔 Solicitação criada. Aguardando ADM.'}catch(e){setMsg('Falha ao gerar ticket. Tente novamente.')}finally{$('ticketBtn').disabled=false}}
+function showWaiting(){if(!guest)return;showPane('waiting');$('ticketNumber').textContent=String(guest.ticket);$('ticketStatus').textContent='⏳ Aguardando ADM.';stopPoll();poll=setInterval(()=>checkGuestStatus(false),4000)}
+async function checkGuestStatus(manual=false){if(!guest)return;if(manual)$('ticketStatus').textContent='Atualizando...';try{const r=await edge({action:'guest_status',ticket:guest.ticket,request_key:guest.request_key});if(!r.ok){if(manual)$('ticketStatus').textContent=r.data?.error||'Falha ao atualizar.';return}if(r.data.status==='approved'){stopPoll();$('ticketStatus').textContent='✅ Autorizado! Entrando...';const login=await authPost('token?grant_type=password',{email:r.data.guest_email,password:r.data.guest_password});if(!login.ok||!login.data?.access_token){$('ticketStatus').textContent='Autorizado, mas não foi possível entrar. Toque em Atualizar.';return}if(!(await authorized(login.data.access_token))){$('ticketStatus').textContent='Aguardando liberação final do ADM...';return}saveSession(login.data);localStorage.removeItem(GUEST_STORE);guest=null;await sleep(500);goApp()}else if(r.data.status==='denied'){stopPoll();$('ticketStatus').textContent='❌ O ADM não autorizou esta entrada.';localStorage.removeItem(GUEST_STORE);guest=null}else if(manual)$('ticketStatus').textContent='⏳ Aguardando ADM.'}catch(e){if(manual)$('ticketStatus').textContent='Falha ao atualizar.'}}
+async function notifyAdminAgain(){if(!guest)return;$('notifyBtn').disabled=true;$('ticketStatus').textContent='Enviando aviso ao ADM...';try{const r=await edge({action:'guest_notify_admin',ticket:guest.ticket,request_key:guest.request_key});$('ticketStatus').textContent=r.ok?(r.data?.email_alert_sent?'✅ Novo aviso enviado ao ADM.':'🔔 Aviso enviado no site.'):(r.data?.error||'Não foi possível avisar o ADM.')}catch(e){$('ticketStatus').textContent='Falha ao avisar o ADM.'}finally{setTimeout(()=>$('notifyBtn').disabled=false,2000)}}
+(function init(){try{guest=JSON.parse(localStorage.getItem(GUEST_STORE)||'null')}catch{guest=null}showPane('email')})();
 </script>
-<script src="creative-squad/cdl-login-brand-v17.js?v=28"></script>
-</body></html>
+</body>
+</html>
