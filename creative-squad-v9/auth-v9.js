@@ -11,6 +11,7 @@ window.sendCode = async function(resend=false){
     });
     const j = await r.json().catch(()=>({}));
     if(!r.ok || !j.ok) return loginMsg(j.error || 'Não foi possível enviar o código agora.');
+    localStorage.setItem('cs_last_email_v1',email.toLowerCase());
     $('emailStep').classList.add('hidden');
     $('codeStep').classList.remove('hidden');
     $('codeEmail').textContent=email;
@@ -22,9 +23,16 @@ window.sendCode = async function(resend=false){
 };
 
 (()=>{
-  if(document.getElementById('roleEditorV23Script'))return;
-  const s=document.createElement('script');
-  s.id='roleEditorV23Script';
-  s.src='../creative-squad/role-editor-v23.js?v=24';
-  document.head.appendChild(s);
+  if(!document.getElementById('roleEditorV23Script')){
+    const s=document.createElement('script');
+    s.id='roleEditorV23Script';
+    s.src='../creative-squad/role-editor-v23.js?v=24';
+    document.head.appendChild(s);
+  }
+  if(!document.getElementById('persistentAccessV32Script')){
+    const p=document.createElement('script');
+    p.id='persistentAccessV32Script';
+    p.src='../persistent-access-v32.js?v=32';
+    document.head.appendChild(p);
+  }
 })();
