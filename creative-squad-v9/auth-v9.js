@@ -1,6 +1,6 @@
 (()=>{
   const maint=document.createElement('script');
-  maint.src='../maintenance-v37.js?v=37';
+  maint.src='../maintenance-v37.js?v=38';
   if(Date.now()<Date.parse('2026-09-23T09:00:00Z'))document.documentElement.style.visibility='hidden';
   maint.onload=()=>{document.documentElement.style.visibility=''};
   maint.onerror=()=>{document.documentElement.style.visibility=''};
