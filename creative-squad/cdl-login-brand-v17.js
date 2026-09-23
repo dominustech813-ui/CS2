@@ -1,6 +1,6 @@
 (()=>{
   const maint=document.createElement('script');
-  maint.src='../maintenance-v37.js?v=37';
+  maint.src='../maintenance-v37.js?v=38';
   if(Date.now()<Date.parse('2026-09-23T09:00:00Z'))document.documentElement.style.visibility='hidden';
   maint.onload=()=>{document.documentElement.style.visibility=''};
   maint.onerror=()=>{document.documentElement.style.visibility=''};
@@ -9,7 +9,7 @@
 
 (()=>{
   const BRAND='Creative Dark Legends 2 COPA CDL';
-  const LOGO='../creative-squad/logo-cdl.svg?v=37';
+  const LOGO='../creative-squad/logo-cdl-official.png?v=38';
   const repl=s=>String(s??'')
     .replace(/Creative Squad/g,BRAND)
     .replace(/Bot CS/g,'Bot CDL')
@@ -37,6 +37,7 @@
     document.title=BRAND;
     let icon=document.querySelector('link[rel~="icon"]');
     if(!icon){icon=document.createElement('link');icon.rel='icon';document.head.appendChild(icon)}
+    icon.type='image/png';
     icon.href=LOGO;
     let apple=document.querySelector('link[rel="apple-touch-icon"]');
     if(!apple){apple=document.createElement('link');apple.rel='apple-touch-icon';document.head.appendChild(apple)}
@@ -46,7 +47,7 @@
     while(n=walker.nextNode())nodes.push(n);
     nodes.forEach(t=>{const p=t.parentElement;if(!p||['SCRIPT','STYLE','NOSCRIPT'].includes(p.tagName))return;const v=repl(t.nodeValue);if(v!==t.nodeValue)t.nodeValue=v;});
     root.querySelectorAll?.('[alt]').forEach(el=>el.alt=repl(el.alt));
-    root.querySelectorAll?.('img').forEach(img=>{const src=(img.getAttribute('src')||'').toLowerCase(),alt=(img.getAttribute('alt')||'').toLowerCase();if(src.includes('logo')||alt.includes('cdl')||alt.includes('creative dark legends'))img.src=LOGO;});
+    root.querySelectorAll?.('img').forEach(img=>{const src=(img.getAttribute('src')||'').toLowerCase(),alt=(img.getAttribute('alt')||'').toLowerCase();if(src.includes('logo')||alt.includes('cdl')||alt.includes('creative dark legends')||alt.includes('creative squad'))img.src=LOGO;});
     ticketUi();
   }
   apply();
